@@ -12,7 +12,7 @@ const uploadFile = () => {
   fs.readFile(fileName, (err, data) => {
      if (err) throw err;
      const params = {
-         Bucket: 'testBucket', // pass your bucket name
+         Bucket: 'testBucket.s3', // pass your bucket name
          Key: 'student.csv', // file will be saved as testBucket/student.csv
          Body: JSON.stringify(data, null, 2)
      };

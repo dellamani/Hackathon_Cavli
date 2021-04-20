@@ -13,7 +13,7 @@ const uploadFile = () => {
      if (err) throw err;
      const params = {
          Bucket: 'testBucket.s3', // pass your bucket name
-         Key: 'student.csv', // file will be saved as testBucket/student.csv
+         Key: 'student.csv', // file will be saved as testBucket.s3/student.csv
          Body: JSON.stringify(data, null, 2)
      };
      s3.upload(params, function(s3Err, data) {
@@ -23,4 +23,21 @@ const uploadFile = () => {
   });
 };
 
+
+const deleteFileFromS3 = () => {
+    const params = {
+      Bucket: 'testBucket.s3', // pass your bucket name
+      Key: fileName, // file will be saved as testBucket.s3/student.csv
+    };
+    s3.deleteObject(params, function(err, data) {
+      if (err) 
+        console.log(err, err.stack);  // error
+      else    
+       console.log(chalk.green("File Successfully Deleted!"));
+    });
+  }; 
+  
+
 uploadFile();
+
+

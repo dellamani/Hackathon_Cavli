@@ -23,6 +23,23 @@ const uploadFile = () => {
   });
 };
 
+//This function for read/download file from s3 bucket
+const s3download = function (params) {
+    return new Promise((resolve, reject) => {
+        s3.createBucket({
+            Bucket: testBucket.s3       /* pass your bucket name */
+        }, function () {
+            s3.getObject(params, function (err, data) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log("Successfully dowloaded data from  bucket");
+                    resolve(data);
+                }
+            });
+        });
+    });
+}
 
 const deleteFileFromS3 = () => {
     const params = {
